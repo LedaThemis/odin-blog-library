@@ -1,0 +1,34 @@
+{
+  "name": "@ledathemis/odin-blog-library",
+  "version": "0.0.1",
+  "description": "Blog API project library implementation",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc",
+    "build": "tsc && cp package.json ./lib",
+    "publish": "cd ./lib && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LedaThemis/odin-blog-library.git"
+  },
+  "author": "Leda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LedaThemis/odin-blog-library/issues"
+  },
+  "homepage": "https://github.com/LedaThemis/odin-blog-library#readme",
+  "dependencies": {
+    "ms": "^2.1.3",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/ms": "^0.7.31",
+    "@types/node": "^18.7.5"
+  }
+}
