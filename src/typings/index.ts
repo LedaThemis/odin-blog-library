@@ -74,3 +74,12 @@ export type RegisterSuccessResponse = {
 };
 
 export type RegisterResponse = RegisterSuccessResponse | FailResponse;
+
+export type CommentType = {
+    _id: string;
+    author: APIUser;
+    content: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+};
