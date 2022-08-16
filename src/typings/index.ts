@@ -97,3 +97,9 @@ export type CommentCreateSuccessResponse = {
 };
 
 export type CommentCreateResponse = CommentCreateSuccessResponse | FailResponse;
+
+export type CommentDeleteSuccessResponse = {
+    state: 'success';
+};
+
+export type CommentDeleteResponse = CommentDeleteSuccessResponse | FailResponse;
