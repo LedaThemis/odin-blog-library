@@ -95,7 +95,9 @@ export const getUser = async () => {
     }
 };
 
-export const getUserPosts = async (id: string | undefined): Promise<PostsResponse> => {
+export const getUserPosts = async (
+    id: string | undefined,
+): Promise<PostsResponse> => {
     if (!isLoggedIn() && !id) {
         return {
             state: 'failed',

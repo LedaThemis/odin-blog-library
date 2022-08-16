@@ -1,3 +1,4 @@
+import { isLoggedIn } from '../Users';
 import {
     CreatePostResponse,
     GetPostResponse,
@@ -6,7 +7,6 @@ import {
     PostType,
     UpdatePostResponse,
 } from '../typings';
-import { isLoggedIn } from '../Users';
 
 export const createPost = async ({
     title,
@@ -111,7 +111,11 @@ export const getPost = async ({
     }
 };
 
-export const togglePostPublished = async ({ post }: { post: PostType }): Promise<UpdatePostResponse> => {
+export const togglePostPublished = async ({
+    post,
+}: {
+    post: PostType;
+}): Promise<UpdatePostResponse> => {
     const res: UpdatePostResponse = await updatePost({
         title: post.title,
         content: post.content,

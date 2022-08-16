@@ -1,52 +1,52 @@
 export type ErrorType = {
-  msg: string;
-  location?: string;
-  param?: string;
-  value?: string;
+    msg: string;
+    location?: string;
+    param?: string;
+    value?: string;
 };
 
 export type User = {
-  token?: string;
+    token?: string;
 };
 
 export type AccessDetails = {
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 };
 
 type FailResponse = {
-  state: 'failed';
-  errors: ErrorType[];
+    state: 'failed';
+    errors: ErrorType[];
 };
 
 type AccessSuccessResponse = {
-  state: 'success';
-  token: string;
-  expiresIn: string;
-  userId: string;
+    state: 'success';
+    token: string;
+    expiresIn: string;
+    userId: string;
 };
 
 export interface APIUser {
-  _id: string;
-  username: string;
+    _id: string;
+    username: string;
 }
 
 export type PostType = {
-  state: 'success';
-  _id: string;
-  title: string;
-  author: APIUser;
-  content: string;
-  comments: string[];
-  isPublished: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+    state: 'success';
+    _id: string;
+    title: string;
+    author: APIUser;
+    content: string;
+    comments: string[];
+    isPublished: boolean;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
 };
 
 type PostsSuccessResponse = {
-  state: 'success';
-  posts: PostType[];
+    state: 'success';
+    posts: PostType[];
 };
 
 export type PostsResponse = PostsSuccessResponse | FailResponse;
@@ -54,15 +54,15 @@ export type PostsResponse = PostsSuccessResponse | FailResponse;
 export type AccessResponse = AccessSuccessResponse | FailResponse;
 
 export interface PostInput {
-  title: string;
-  content: string;
+    title: string;
+    content: string;
 }
 
 export type CreatePostResponse = PostType | FailResponse;
 
 export interface PostGetSuccessResponse {
-  state: 'success';
-  post: PostType;
+    state: 'success';
+    post: PostType;
 }
 
 export type GetPostResponse = PostGetSuccessResponse | FailResponse;
