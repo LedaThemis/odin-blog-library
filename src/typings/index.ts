@@ -103,3 +103,10 @@ export type CommentDeleteSuccessResponse = {
 };
 
 export type CommentDeleteResponse = CommentDeleteSuccessResponse | FailResponse;
+
+export type CommentUpdateSuccessResponse = {
+    state: 'success';
+    comment: CommentType;
+};
+
+export type CommentUpdateResponse = CommentUpdateSuccessResponse | FailResponse;
