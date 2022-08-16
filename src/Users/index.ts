@@ -95,8 +95,8 @@ export const getUser = async () => {
     }
 };
 
-export const getUserPosts = async (): Promise<PostsResponse> => {
-    if (!isLoggedIn()) {
+export const getUserPosts = async (id: string | undefined): Promise<PostsResponse> => {
+    if (!isLoggedIn() && !id) {
         return {
             state: 'failed',
             errors: [{ msg: 'You are not logged in.' }],
@@ -104,7 +104,14 @@ export const getUserPosts = async (): Promise<PostsResponse> => {
     }
 
     try {
-        const CURRENT_USER_ID = localStorage.getItem('userId');
+        const CURRENT_USER_ID = id ? id : localStorage.getItem('userId');
+
+        const headers: { Authorization?: string } = {};
+
+        if (localStorage.getItem('token') !== null) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            headers.Authorization = localStorage.getItem('token')!;
+        }
 
         const res: PostsResponse = await (
             await fetch(
@@ -114,7 +121,7 @@ export const getUserPosts = async (): Promise<PostsResponse> => {
                     headers: {
                         'Content-Type': 'application/json',
                         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                        Authorization: localStorage.getItem('token')!,
+                        ...headers,
                     },
                 },
             )
