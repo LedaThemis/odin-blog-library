@@ -1,6 +1,6 @@
 {
     "name": "@ledathemis/odin-blog-library",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Blog API project library implementation",
     "main": "index.js",
     "types": "index.d.ts",
