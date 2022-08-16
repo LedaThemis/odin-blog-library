@@ -1,5 +1,6 @@
 import { isLoggedIn } from '../Users';
 import {
+    CommentCreateResponse,
     CommentsGetResponse,
     CreatePostResponse,
     GetPostResponse,
@@ -175,8 +176,48 @@ export const getPostComments = async ({
                     method: 'get',
                     headers: {
                         'Content-Type': 'application/json',
-                        ...headers
+                        ...headers,
                     },
+                },
+            )
+        ).json();
+
+        return res;
+    } catch {
+        return {
+            state: 'failed',
+            errors: [{ msg: 'An error occurred while processing request.' }],
+        };
+    }
+};
+
+export const createPostComment = async ({
+    id,
+    content,
+}: {
+    id: string;
+    content: string;
+}): Promise<CommentCreateResponse> => {
+    if (!isLoggedIn()) {
+        return {
+            state: 'failed',
+            errors: [{ msg: 'You are not logged in.' }],
+        };
+    }
+
+    try {
+        const res: CommentCreateResponse = await (
+            await fetch(
+                `${process.env.REACT_APP_BASE_URL}/posts/${id}/comments`,
+                {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: localStorage.getItem('token'),
+                    },
+                    body: JSON.stringify({
+                        content,
+                    }),
                 },
             )
         ).json();

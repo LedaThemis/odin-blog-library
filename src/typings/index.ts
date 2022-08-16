@@ -90,3 +90,10 @@ export type CommentsGetSuccessResponse = {
 };
 
 export type CommentsGetResponse = CommentsGetSuccessResponse | FailResponse;
+
+export type CommentCreateSuccessResponse = {
+    state: 'success';
+    comment: CommentType;
+};
+
+export type CommentCreateResponse = CommentCreateSuccessResponse | FailResponse;
