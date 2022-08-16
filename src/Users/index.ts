@@ -8,7 +8,10 @@ import {
     RegisterResponse,
 } from '../typings';
 
-export const register = async ({ username, password }: AccessDetails) => {
+export const register = async ({
+    username,
+    password,
+}: AccessDetails): Promise<RegisterResponse> => {
     try {
         const res: RegisterResponse = await (
             await fetch(`${process.env.REACT_APP_BASE_URL}/users/register`, {
