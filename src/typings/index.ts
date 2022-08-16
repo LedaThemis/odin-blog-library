@@ -83,3 +83,10 @@ export type CommentType = {
     updatedAt: string;
     __v: number;
 };
+
+export type CommentsGetSuccessResponse = {
+    state: 'success';
+    comments: CommentType[];
+};
+
+export type CommentsGetResponse = CommentsGetSuccessResponse | FailResponse;

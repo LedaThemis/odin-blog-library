@@ -1,5 +1,6 @@
 import { isLoggedIn } from '../Users';
 import {
+    CommentsGetResponse,
     CreatePostResponse,
     GetPostResponse,
     PostGetSuccessResponse,
@@ -145,6 +146,40 @@ export const deletePost = async ({ id }: { id: string }) => {
                 },
             },
         );
+
+        return res;
+    } catch {
+        return {
+            state: 'failed',
+            errors: [{ msg: 'An error occurred while processing request.' }],
+        };
+    }
+};
+
+export const getPostComments = async ({
+    id,
+}: {
+    id: string;
+}): Promise<CommentsGetResponse> => {
+    try {
+        const headers: { Authorization?: string } = {};
+
+        if (localStorage.getItem('token') !== null) {
+            headers.Authorization = localStorage.getItem('token');
+        }
+
+        const res: CommentsGetResponse = await (
+            await fetch(
+                `${process.env.REACT_APP_BASE_URL}/posts/${id}/comments`,
+                {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...headers
+                    },
+                },
+            )
+        ).json();
 
         return res;
     } catch {
