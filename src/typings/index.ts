@@ -68,3 +68,9 @@ export interface PostGetSuccessResponse {
 export type GetPostResponse = PostGetSuccessResponse | FailResponse;
 
 export type UpdatePostResponse = GetPostResponse;
+
+export type RegisterSuccessResponse = {
+    state: 'success';
+};
+
+export type RegisterResponse = RegisterSuccessResponse | FailResponse;

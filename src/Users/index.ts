@@ -5,7 +5,32 @@ import {
     AccessDetails,
     AccessResponse,
     PostsResponse,
+    RegisterResponse,
 } from '../typings';
+
+export const register = async ({ username, password }: AccessDetails) => {
+    try {
+        const res: RegisterResponse = await (
+            await fetch(`${process.env.REACT_APP_BASE_URL}/users/register`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            })
+        ).json();
+
+        return res;
+    } catch {
+        return {
+            state: 'failed',
+            errors: [{ msg: 'An error occurred while submitting request.' }],
+        };
+    }
+};
 
 export const login = async ({
     username,
